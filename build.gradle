@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.densev'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+mainClassName = "com.densev.chess.Application"
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    guavaVersion = '27.+'
+    commonsCollectionsVersion = '4.2'
+    logbackVersion = '1.1.8'
+    testNgVersion = '[6.14, 6.15)'
+    mockitoVersion = '[2.8.0, 2.9.0)'
+}
+
+dependencies {
+    //general
+    implementation "com.google.guava:guava:$guavaVersion"
+    implementation "org.apache.commons:commons-collections4:$commonsCollectionsVersion"
+    //logging
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+    //testing
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.testng:testng:$testNgVersion"
+}
+
+test {
+    useTestNG()
+    testLogging.setLifecycle(testLogging.debug)
+}
+
+run {
+    standardInput = System.in
+}
